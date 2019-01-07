@@ -1,3 +1,4 @@
+CC = g++
 BUILDDIR = build
 
 .PHONY: all clean
@@ -7,11 +8,11 @@ all: chapter01
 pre-build: 
 	mkdir -p $(BUILDDIR)
 
-chapter01: pre-build
-	g++ -o $(BUILDDIR)/chapter01 chapter01.cc
+chapter%: pre-build
+	$(CC) -o $(BUILDDIR)/$@ $@.cc
 
-display.chapter01: chapter01
-	./$(BUILDDIR)/chapter01 | display
+display.chapter%: chapter%
+	./$(BUILDDIR)/$^ | display
 
 clean:
 	rm -rf $(BUILDDIR)/*
