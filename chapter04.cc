@@ -22,10 +22,15 @@ vec3 color(const ray& r) {
 int main () {
   int nx = 800;
   int ny = 600;
+
+  float screen_ratio = nx*1.0/ny*1.0;
+  float y = 2.0;
+  float x = y * screen_ratio;
+
   std::cout << "P3\n" << nx << " " << ny << "\n255\n";
-  vec3 lower_left_corner(-2.0, -1.5, -1.0);
-  vec3 horizontal(4.0, 0.0, 0.0);
-  vec3 vertical(0.0, 3.0, 0.0);
+  vec3 lower_left_corner(-x/2, -y/2, -1.0);
+  vec3 horizontal( x, 0.0, 0.0);
+  vec3 vertical(0.0, y, 0.0);
   vec3 origin(0.0, 0.0, 0.0);
 
   for (int j = ny-1; j >= 0; j--) {
